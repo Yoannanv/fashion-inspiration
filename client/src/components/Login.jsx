@@ -1,0 +1,28 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+import { useContext } from 'react';
+import useForm from '../hooks/useFormHook'
+import AuthContext from '../contexts/AuthContext';
+
+export default function Login() {
+    let { loginSubmitHandler } = useContext(AuthContext)
+    let { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
+        email: '',
+        password: ''
+    })
+    return (
+      <div className='loginFormContainer'>
+            <form onSubmit={onSubmit}>
+            <h2>Login</h2>
+                <label htmlFor="email">Email:</label>
+                <input type="text" id="email" name="email" onChange={onChange} value={values.email} required />
+
+                <label htmlFor="password">Password:</label>
+                <input type="password" id="password" name="password" onChange={onChange} value={values.password} required />
+
+                <button type="submit">Login</button>
+            </form>
+    
+      </div>
+    )
+}
